@@ -36,6 +36,25 @@ public class Mapper {
 		return list;
 	}
 	
+	public static BookingOffice mapToBookingOffice(ResultSet resultSet) throws SQLException {
+		if (resultSet != null) {
+			while (resultSet.next()) {
+				BigInteger officeId = BigInteger.valueOf(resultSet.getLong("officeId"));
+				String officeName = resultSet.getString("officeName");
+				String officePhone = resultSet.getString("officePhone");
+				String officePlace = resultSet.getString("officePlace");
+				BigInteger officePrice = BigInteger.valueOf(resultSet.getLong("officePrice"));
+				String startContractDeadline = resultSet.getString("startContractDeadline");
+				String endContractDeadline = resultSet.getString("endContractDeadline");
+				BigInteger tripId = BigInteger.valueOf(resultSet.getLong("tripId"));
+				String tripDestination = resultSet.getString("tripDestination");
+
+				return new BookingOffice(officeId, officeName, officePhone, officePlace, officePrice, startContractDeadline, endContractDeadline, tripId, tripDestination);
+			}
+		}
+		return null;
+	}
+	
 	public static List<Trip> mapToTripList(ResultSet resultSet) throws SQLException {
 		List<Trip> list = new ArrayList<>();
 		if (resultSet != null) {

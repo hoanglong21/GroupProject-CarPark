@@ -184,7 +184,7 @@ table, tr, td, th {
 									<td>${i.officeId}</td>
 									<td>${i.officeName}</td>
 									<td>${i.tripDestination}</td>
-									<td><a href="#"><i class="fa-solid fa-eye"></i> View</a></td>
+									<td><a href="viewbooking?id=${i.officeId}"><i class="fa-solid fa-eye"></i> View</a></td>
 								</tr>
 							</c:forEach>
 

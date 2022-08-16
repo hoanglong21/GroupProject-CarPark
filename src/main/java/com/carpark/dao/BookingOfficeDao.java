@@ -26,6 +26,8 @@ public class BookingOfficeDao {
 			+ " INNER JOIN trip t ON b.tripId = t.tripId WHERE b.officeName LIKE ?";
 	private final String searchByTripTotalPage = " SELECT COUNT(*) AS COUNT FROM bookingoffice b "
 			+ " INNER JOIN trip t ON b.tripId = t.tripId WHERE t.destination LIKE ?";
+	private final String bookingOfficeById = "  SELECT b.*, t.destination AS tripDestination FROM bookingoffice b "
+			+ " INNER JOIN trip t ON b.tripId = t.tripId WHERE b.officeId = ?";
 	
 	public List<BookingOffice> getAllBookingOffice() {
 		try(Connection connection = ConnectionDB.getInstance().getConnection();
@@ -96,9 +98,22 @@ public class BookingOfficeDao {
 		return 0;
 	}
 	
+	public BookingOffice getBookingOfficeById(BigInteger id) {
+		try(Connection connection = ConnectionDB.getInstance().getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(bookingOfficeById)){
+			preparedStatement.setLong(1, id.longValue());
+			ResultSet resultSet = preparedStatement.executeQuery();
+			return Mapper.mapToBookingOffice(resultSet);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static void main(String[] args) {
 		BookingOfficeDao dao = new BookingOfficeDao();
 //		System.out.println(dao.getAllBookingOffice());
 //		dao.addBookingOffice("hehe", "06456456", "abcAdd", BigInteger.valueOf(454456154), "2022/1/1", "2022/1/1", BigInteger.valueOf(1));
+		System.out.println(dao.getBookingOfficeById(BigInteger.valueOf(1)));
 	}
 }
