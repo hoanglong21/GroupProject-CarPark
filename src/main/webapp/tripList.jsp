@@ -50,8 +50,8 @@ table, tr, td, th {
 	<div style="overflow-x: hidden;">
 		<nav class="navbar navbar-expand-lg bg-light fixed-top border">
 			<div class="container-fluid">
-				<a style="color: black;" href="#"> <i class="fa-solid fa-ticket"
-					style="transform: rotate(-45deg);"></i>&nbsp Ticket
+				<a style="color: black;" href="#"> <i class="fa-solid fa-plane"
+					style="transform: rotate(-45deg);"></i>&nbsp Trip
 				</a>
 
 				<div style="text-align: right;">
@@ -71,15 +71,31 @@ table, tr, td, th {
 				<div class="accordion">
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="headingOne">
-							<button class="accordion-button collapsed"
-								style="background: #F8F8F8; padding-left: 7px; color: #897AB7;"
+							<button class="accordion-button"
+								style="background: #F8F8F8; padding-left: 5px; color: #897AB7;"
 								type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseZero" aria-expanded="false"
-								aria-controls="collapseOne">
-								<i class="fa-solid fa-plane"></i>&nbsp Trip manager
-
+								data-bs-target="#collapse2" aria-expanded="true"
+								aria-controls="collapse2">
+								<i class="fa-solid fa-plane" style="transform: rotate(-45deg);"></i>
+								&nbsp Trip manager
 							</button>
 						</h2>
+						<div id="collapse2" style="background: #F8F8F8;"
+							class="accordion-collapse collapse show"
+							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+							<div class="accordion-body" style="padding: 0px;">
+								<div class="border long abit"
+									style="padding-left: 25px; border: none !important; background: #EEEEEE;">
+									<a class="dropdown-item" href="triplist"><i
+										class="fa-solid fa-list"></i> Trip list</a>
+								</div>
+								<div class="border long abit"
+									style="padding-left: 25px; border: none !important;">
+									<a class="dropdown-item" href="addticket">
+									<i class="fa-solid fa-plus"></i> Add Trip </a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="accordion">
@@ -138,22 +154,7 @@ table, tr, td, th {
 										value="${search}" >
 								</div>
 							</div>
-							<div class="col-auto" style="margin-right: 1%; width: 20%;">
-								<label class="sr-only" for="place">place</label>
-								<div class="input-group mb-2">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="fa-solid fa-filter"></i> &nbsp; Filter By
-										</div>
-									</div>
-									<select id="by" name="by" style="width: 55%; margin: 0;"
-										class="box">
-										<option value="licensePlate" ${by=='licensePlate'?'selected':''}>License</option>
-										<option value="tp.destination" ${by=='tp.destination'?'selected':''}>Trip</option>
-										<option value="customerName" ${by=='customerName'?'selected':''}>Customer</option>
-									</select>
-								</div>
-							</div>
+						
 							<div class="col-auto" style="text-align: right;">
 								<button type="submit" class="btn btn-primary mb-2"
 									style="background: #5BC0DE; margin-left: 0%; padding-top: 0px; padding-bottom: 0px;">Search</button>
@@ -203,23 +204,25 @@ table, tr, td, th {
 						<thead>
 							<tr style="background: #EEEEEE">
 								<th style="width: 5%;">No</th>
-								<th style="width: 20%;">Trip</th>
-								<th style="width: 20%;">License plate</th>
-								<th style="width: 20%;">Customer</th>
-								<th style="width: 15%;">Booking time</th>
+								<th style="width: 20%;">Destination</th>
+								<th style="width: 20%;">Departure Time</th>
+								<th style="width: 20%;">Driver</th>
+								<th style="width: 15%;">Car Type</th>
+								<th style="width: 15%;">Booked ticket number</th>
 								<th style="width: 10%;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${list}" var="i">
+							<c:forEach items="${listtrip}" var="i">
 								<tr>
-									<td>${i.ticketId}</td>
-									<td>${i.tripDestination}</td>
-									<td>${i.licensePlate}</td>
-									<td>${i.customerName}</td>
-									<td>${fn:substring(i.bookingTime, 0, 5)}</td>
+									<td>${i.tripId}</td>
+									<td>${i.destination}</td>
+									<td>${fn:substring(i.departureTime, 0, 5)}</td>
+									<td>${i.driver}</td>
+									<td>${i.carType}</td>
+									<td>${i.bookedTicketNumber}</td>
 									<td><a href="#" class="delete"
-									 id="delete-${i.ticketId}"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
+									 id="delete-${i.tripId}"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
 								</tr>
 							</c:forEach>
 
@@ -267,7 +270,7 @@ table, tr, td, th {
 		 }
 		$.ajax(
 			{
-				url: 'http://localhost:8080/CarPark/ticketlist',
+				url: 'http://localhost:8080/CarPark/triplist',
 				type: 'POST',
 				data: {
 					
@@ -304,7 +307,7 @@ table, tr, td, th {
 		 }
 		$.ajax(
 			{
-				url: 'http://localhost:8080/CarPark/ticketlist',
+				url: 'http://localhost:8080/CarPark/triplist',
 				type: 'POST',
 				data: {
 					"search": $('#search').val(),

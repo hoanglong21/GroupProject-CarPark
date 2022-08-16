@@ -11,7 +11,14 @@ import com.carpark.util.ConnectionDB;
 import com.carpark.util.Mapper;
 
 public class TripDao {
-	private final String tripAll = " SELECT * FROM trip ";
+	private final String tripAll = " select tp.tripId,\r\n"
+			+ "       destination,\r\n"
+			+ "	   departureTime,\r\n"
+			+ "	   driver,\r\n"
+			+ "	   carType,\r\n"
+			+ "	   COUNT(tk.tripId) as bookedTicketNumber\r\n"
+			+ "from trip tp inner join ticket tk on tp.tripId = tk.tripId\r\n"
+			+ "group by tp.tripId, destination, departureTime, driver, carType ";
 	public List<Trip> getAllTrip() {
 		try(Connection connection = ConnectionDB.getInstance().getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(tripAll)){			

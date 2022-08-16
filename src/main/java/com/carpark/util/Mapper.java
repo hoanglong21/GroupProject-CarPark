@@ -62,17 +62,17 @@ public class Mapper {
 				BigInteger tripId = BigInteger.valueOf(resultSet.getLong("tripId"));
 				int bookedTicketNumber = resultSet.getInt("bookedTicketNumber");
 				String carType = resultSet.getString("carType");
-				String departureDate = resultSet.getString("departureDate");
 				String departureTime = resultSet.getString("departureTime");
 				String destination = resultSet.getString("destination");
 				String driver = resultSet.getString("driver");
-				int maxiumOnlineTicketNumber = resultSet.getInt("maxiumOnlineTicketNumber");
 				
-				list.add(new Trip(tripId, bookedTicketNumber, carType, departureDate, departureTime, destination, driver, maxiumOnlineTicketNumber));
+				
+				list.add(new Trip(tripId, bookedTicketNumber, carType, departureTime, destination, driver));
 			}
 		}
 		return list;
 	}
+	
 	
 	public static List<Car> mapToCarList(ResultSet resultSet) throws SQLException {
 		List<Car> list = new ArrayList<>();

@@ -29,6 +29,17 @@ public class Trip {
 		this.maxiumOnlineTicketNumber = maxiumOnlineTicketNumber;
 	}
 
+	public Trip(BigInteger tripId, int bookedTicketNumber, String carType, String departureTime,
+			String destination, String driver) {
+		this.tripId = tripId;
+		this.bookedTicketNumber = bookedTicketNumber;
+		this.carType = carType;
+		this.departureTime = departureTime;
+		this.destination = destination;
+		this.driver = driver;
+	}
+
+
 	public BigInteger getTripId() {
 		return tripId;
 	}
