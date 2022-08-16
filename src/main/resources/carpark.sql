@@ -2,6 +2,11 @@ CREATE DATABASE carpark
 
 USE carpark
 
+CREATE TABLE [role] (
+	roleId						INT	IDENTITY(1,1)				PRIMARY KEY,
+	roleName					VARCHAR(50)
+)
+
 CREATE TABLE employee (
 	employeeId					BIGINT IDENTITY(1,1)			PRIMARY KEY,
 	employeeFullName			VARCHAR(50)						NOT NULL,
@@ -13,6 +18,8 @@ CREATE TABLE employee (
 	employeePhone				VARCHAR(50)						NOT NULL			CHECK (employeePhone NOT LIKE '%[^0-9]%'),
 	[password]					VARCHAR(100)					NOT NULL,
 	sex							VARCHAR(1)						NOT NULL,
+	roleId						INT,
+	FOREIGN KEY (roleId)		REFERENCES [role] (roleId)
 )
 
 CREATE TABLE trip (
@@ -66,6 +73,8 @@ CREATE TABLE ticket (
 	FOREIGN KEY (tripId)		REFERENCES trip (tripId)
 )
 
+
+
 -- note --
 /*
 	department
@@ -75,67 +84,70 @@ CREATE TABLE ticket (
 */
 
 ------------------------------------------------------ DATA ------------------------------------------------------
+INSERT INTO [role] (roleName)
+VALUES ('HRM Staff'),('Car park operation administration staff')
 
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Glen Bunten', 'gbunten0', 'Business Development', '65 Dottie Road', '2020/01/21', 'gbunten0@economist.com', '3682601794', 'CdemQfZbMJ', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Karlan Abbott', 'kabbott1', 'Product Management', '2188 Anthes Pass', '2020/07/18', 'kabbott1@engadget.com', '7434073209', 'QWCiQiok', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Brandise O''Kieran', 'bokieran2', 'Sales', '2 Farragut Place', '2020/07/12', 'bokieran2@netscape.com', '7935966398', 'GhnIm5D76K', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Burtie Gingle', 'bgingle3', 'Training', '511 Dottie Junction', '2020/02/15', 'bgingle3@guardian.co.uk', '9957572330', 'XKjugQnGbq', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Zach Jessep', 'zjessep4', 'Human Resources', '1 Melvin Plaza', '2019/12/27', 'zjessep4@t-online.de', '6141633348', '5R4GjNW2', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Blaine Gligori', 'bgligori5', 'Marketing', '85873 Stone Corner Park', '2020/07/27', 'bgligori5@nhs.uk', '8949885565', 'oesmvGUyYBq9', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Lanie Jackes', 'ljackes6', 'Support', '43431 Loomis Circle', '2020/01/04', 'ljackes6@com.com', '2523631818', '21hxQ3', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Nixie Cantrill', 'ncantrill7', 'Business Development', '20873 Luster Point', '2020/02/02', 'ncantrill7@columbia.edu', '6967603989', 'KIMO3iF', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Caralie Booi', 'cbooi8', 'Accounting', '8 Rieder Point', '2019/10/15', 'cbooi8@github.com', '6409577346', 'slwCu5hQnRzU', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Hazel McKnockiter', 'hmcknockiter9', 'Sales', '6082 Merry Circle', '2020/05/02', 'hmcknockiter9@cnn.com', '7597731981', '2FjMIqaSv73l', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Avrit Sanford', 'asanforda', 'Engineering', '37544 Bonner Center', '2019/12/01', 'asanforda@twitpic.com', '8919777231', 'lICE39Ylhg', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Tanhya Epp', 'teppb', 'Accounting', '95937 Bobwhite Terrace', '2020/06/19', 'teppb@google.cn', '4739247860', 'qc34UwR', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Clarissa Petrolli', 'cpetrollic', 'Sales', '396 Fairfield Way', '2020/10/30', 'cpetrollic@liveinternet.ru', '2516686267', 'rdikMHbWEJ', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Drusi Wheelton', 'dwheeltond', 'Product Management', '60 Fremont Circle', '2019/06/21', 'dwheeltond@live.com', '2324190510', 'gAxBixQ9Y0uH', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Nikaniki Cheng', 'nchenge', 'Services', '60 Kings Pass', '2020/04/17', 'nchenge@mayoclinic.com', '6598085893', 'Z95rLkg0', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Orel Leakner', 'oleaknerf', 'Training', '55269 Loftsgordon Trail', '2019/07/23', 'oleaknerf@oracle.com', '6079788607', 'k9vwR19a', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Otis Playfoot', 'oplayfootg', 'Product Management', '05 Grim Center', '2019/09/24', 'oplayfootg@goo.ne.jp', '8016830173', '0bLf81vg', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Carlin Briat', 'cbriath', 'Legal', '25 Vera Plaza', '2020/01/03', 'cbriath@comsenz.com', '4107708054', 'enMSnxI', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Corrine Shorthouse', 'cshorthousei', 'Human Resources', '3 Monica Road', '2020/07/27', 'cshorthousei@tiny.cc', '1368096125', '3kuIZyF', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Robbie Harteley', 'rharteleyj', 'Sales', '3602 Melrose Hill', '2020/10/27', 'rharteleyj@answers.com', '6812693628', '0plB0qfv1Oxr', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Barbette Mulvagh', 'bmulvaghk', 'Product Management', '87510 Bunting Street', '2019/06/28', 'bmulvaghk@amazon.com', '6446748716', 'KZtYnIEPf', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Nadeen Pisco', 'npiscol', 'Training', '7680 Katie Hill', '2020/09/12', 'npiscol@bravesites.com', '8788997568', 'EQukVLnli', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Mab Defew', 'mdefewm', 'Marketing', '8703 Golf Center', '2020/08/23', 'mdefewm@wunderground.com', '2044664535', 'hMHzfjup9W', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Coral Norres', 'cnorresn', 'Training', '461 Main Road', '2020/09/10', 'cnorresn@liveinternet.ru', '1754941888', 'XzJvIpcFJ9', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Katha Prew', 'kprewo', 'Training', '45 Morrow Point', '2020/06/09', 'kprewo@goo.ne.jp', '5162315123', 'EwSV6lz6', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Alie Eversfield', 'aeversfieldp', 'Human Resources', '428 Troy Crossing', '2019/12/24', 'aeversfieldp@wp.com', '2159990989', 'NN0Kqs', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Sharyl Dietzler', 'sdietzlerq', 'Product Management', '21 Fairview Place', '2020/03/08', 'sdietzlerq@last.fm', '1473998525', 'z2Cb5jc', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Britta Ostrich', 'bostrichr', 'Marketing', '528 Darwin Avenue', '2020/06/27', 'bostrichr@intel.com', '8941370528', 'zrMseBGIFG5', 1);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Guillema Cromie', 'gcromies', 'Training', '464 Mendota Pass', '2019/08/17', 'gcromies@nationalgeographic.com', '5452605966', 'NsbgPN3A', 0);
-INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex) 
-VALUES ('Jessamyn Ladson', 'jladsont', 'Research and Development', '0053 Lotheville Hill', '2020/03/17', 'jladsont@oaic.gov.au', '2044955447', 'MHvpev', 0);
+
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Glen Bunten', 'gbunten0', 'Business Development', '65 Dottie Road', '2020/01/21', 'gbunten0@economist.com', '3682601794', 'CdemQfZbMJ', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Karlan Abbott', 'kabbott1', 'Product Management', '2188 Anthes Pass', '2020/07/18', 'kabbott1@engadget.com', '7434073209', 'QWCiQiok', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Brandise O''Kieran', 'bokieran2', 'Sales', '2 Farragut Place', '2020/07/12', 'bokieran2@netscape.com', '7935966398', 'GhnIm5D76K', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Burtie Gingle', 'bgingle3', 'Training', '511 Dottie Junction', '2020/02/15', 'bgingle3@guardian.co.uk', '9957572330', 'XKjugQnGbq', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Zach Jessep', 'zjessep4', 'Human Resources', '1 Melvin Plaza', '2019/12/27', 'zjessep4@t-online.de', '6141633348', '5R4GjNW2', 1, 2);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Blaine Gligori', 'bgligori5', 'Marketing', '85873 Stone Corner Park', '2020/07/27', 'bgligori5@nhs.uk', '8949885565', 'oesmvGUyYBq9', 1, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Lanie Jackes', 'ljackes6', 'Support', '43431 Loomis Circle', '2020/01/04', 'ljackes6@com.com', '2523631818', '21hxQ3', 1, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Nixie Cantrill', 'ncantrill7', 'Business Development', '20873 Luster Point', '2020/02/02', 'ncantrill7@columbia.edu', '6967603989', 'KIMO3iF', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Caralie Booi', 'cbooi8', 'Accounting', '8 Rieder Point', '2019/10/15', 'cbooi8@github.com', '6409577346', 'slwCu5hQnRzU', 0, 2);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Hazel McKnockiter', 'hmcknockiter9', 'Sales', '6082 Merry Circle', '2020/05/02', 'hmcknockiter9@cnn.com', '7597731981', '2FjMIqaSv73l', 1, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Avrit Sanford', 'asanforda', 'Engineering', '37544 Bonner Center', '2019/12/01', 'asanforda@twitpic.com', '8919777231', 'lICE39Ylhg', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Tanhya Epp', 'teppb', 'Accounting', '95937 Bobwhite Terrace', '2020/06/19', 'teppb@google.cn', '4739247860', 'qc34UwR', 0, 2);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Clarissa Petrolli', 'cpetrollic', 'Sales', '396 Fairfield Way', '2020/10/30', 'cpetrollic@liveinternet.ru', '2516686267', 'rdikMHbWEJ', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Drusi Wheelton', 'dwheeltond', 'Product Management', '60 Fremont Circle', '2019/06/21', 'dwheeltond@live.com', '2324190510', 'gAxBixQ9Y0uH', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Nikaniki Cheng', 'nchenge', 'Services', '60 Kings Pass', '2020/04/17', 'nchenge@mayoclinic.com', '6598085893', 'Z95rLkg0', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Orel Leakner', 'oleaknerf', 'Training', '55269 Loftsgordon Trail', '2019/07/23', 'oleaknerf@oracle.com', '6079788607', 'k9vwR19a', 1, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Otis Playfoot', 'oplayfootg', 'Product Management', '05 Grim Center', '2019/09/24', 'oplayfootg@goo.ne.jp', '8016830173', '0bLf81vg', 0, 2);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Carlin Briat', 'cbriath', 'Legal', '25 Vera Plaza', '2020/01/03', 'cbriath@comsenz.com', '4107708054', 'enMSnxI', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Corrine Shorthouse', 'cshorthousei', 'Human Resources', '3 Monica Road', '2020/07/27', 'cshorthousei@tiny.cc', '1368096125', '3kuIZyF', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Robbie Harteley', 'rharteleyj', 'Sales', '3602 Melrose Hill', '2020/10/27', 'rharteleyj@answers.com', '6812693628', '0plB0qfv1Oxr', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Barbette Mulvagh', 'bmulvaghk', 'Product Management', '87510 Bunting Street', '2019/06/28', 'bmulvaghk@amazon.com', '6446748716', 'KZtYnIEPf', 1, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Nadeen Pisco', 'npiscol', 'Training', '7680 Katie Hill', '2020/09/12', 'npiscol@bravesites.com', '8788997568', 'EQukVLnli', 1, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Mab Defew', 'mdefewm', 'Marketing', '8703 Golf Center', '2020/08/23', 'mdefewm@wunderground.com', '2044664535', 'hMHzfjup9W', 1, 2);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Coral Norres', 'cnorresn', 'Training', '461 Main Road', '2020/09/10', 'cnorresn@liveinternet.ru', '1754941888', 'XzJvIpcFJ9', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Katha Prew', 'kprewo', 'Training', '45 Morrow Point', '2020/06/09', 'kprewo@goo.ne.jp', '5162315123', 'EwSV6lz6', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Alie Eversfield', 'aeversfieldp', 'Human Resources', '428 Troy Crossing', '2019/12/24', 'aeversfieldp@wp.com', '2159990989', 'NN0Kqs', 1, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Sharyl Dietzler', 'sdietzlerq', 'Product Management', '21 Fairview Place', '2020/03/08', 'sdietzlerq@last.fm', '1473998525', 'z2Cb5jc', 0, 2);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Britta Ostrich', 'bostrichr', 'Marketing', '528 Darwin Avenue', '2020/06/27', 'bostrichr@intel.com', '8941370528', 'zrMseBGIFG5', 1, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Guillema Cromie', 'gcromies', 'Training', '464 Mendota Pass', '2019/08/17', 'gcromies@nationalgeographic.com', '5452605966', 'NsbgPN3A', 0, 1);
+INSERT INTO employee (employeeFullName, account, department, employeeAddress, employeeBirthdate, employeeEmail, employeePhone, password, sex, roleId) 
+VALUES ('Jessamyn Ladson', 'jladsont', 'Research and Development', '0053 Lotheville Hill', '2020/03/17', 'jladsont@oaic.gov.au', '2044955447', 'MHvpev', 0, 1);
 
 
 INSERT INTO trip (bookedTicketNumber, carType, departureDate, departureTime, destination, driver, maxiumOnlineTicketNumber) 
@@ -946,3 +958,4 @@ INSERT INTO ticket (bookingTime, customerName, licensePlate, tripId)
 VALUES ('12:55 PM', 'Benetta Pedrazzi', '203.80.4.19/4', 13);
 INSERT INTO ticket (bookingTime, customerName, licensePlate, tripId) 
 VALUES ('4:51 AM', 'Aggi Latour', '87.85.233.203/18', 29);
+

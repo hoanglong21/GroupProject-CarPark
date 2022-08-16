@@ -66,6 +66,11 @@ CREATE TABLE ticket (
 	FOREIGN KEY (tripId)		REFERENCES trip (tripId)
 )
 
+CREATE TABLE [role] (
+	roleId						INT	IDENTITY(1,1)				PRIMARY KEY,
+	roleName					VARCHAR(50)
+)
+
 -- note --
 /*
 	department
@@ -946,3 +951,7 @@ INSERT INTO ticket (bookingTime, customerName, licensePlate, tripId)
 VALUES ('12:55 PM', 'Benetta Pedrazzi', '203.80.4.19/4', 13);
 INSERT INTO ticket (bookingTime, customerName, licensePlate, tripId) 
 VALUES ('4:51 AM', 'Aggi Latour', '87.85.233.203/18', 29);
+
+
+INSERT INTO [role] (roleName)
+VALUES ('HRM Staff'),('Car park operation administration staff')

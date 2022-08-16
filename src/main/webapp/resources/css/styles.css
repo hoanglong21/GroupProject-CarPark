@@ -1,0 +1,119 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	vertical-align: middle;
+}
+
+body {
+	background-color: #F8F8F8;
+}
+
+.frm-top {
+	background-color: #F5F5F5;
+	border-bottom: 1px solid #D6D6D6;
+	margin-top: 0 !important;
+}
+
+.frm-top>p {
+	margin: auto;
+	width: 90%;
+	font-size: 1.5em;
+}
+
+.box {
+	padding: 3%;
+	border: 1px solid #D6D6D6;
+	border-radius: 5px;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	background-color: #FFFFFF;
+}
+
+.box button {
+	color: #FFFFFF;
+	background-color: #5CB85C;
+	border: 1px solid #D6D6D6;
+	border-radius: 5px;
+	font-size: 1.5em;
+}
+
+.frm {
+	margin: auto;
+	width: 90%;
+}
+
+.long {
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+.navbar {
+	background-color: #F8F8F8;
+}
+
+.big {
+	padding: 2%;
+	margin: 3% 0;
+}
+
+.justifyLeft {
+	padding-left: 0;
+}
+
+.dropdown-menu {
+	right: 0 !important;
+	left: auto !important;
+}
+
+.dropdown-menu>li {
+	padding-left: 5%;
+}
+
+.abit {
+	padding: 3% 3%;
+	border-right-width: 0px !important;
+}
+
+div[class='border long abit'] {
+	color: #897AB7;
+}
+
+.big2 {
+	width: 60%;
+	margin-bottom: 1%;
+	margin-left: 1%;
+}
+
+input[class="big2"] {
+	padding-left: 1%;
+}
+
+.frm-top2 {
+	background-color: #F5F5F5;
+	border-bottom: 1px solid #D6D6D6;
+	margin-top: 0 !important;
+}
+
+.col-10 label {
+	font-weight: bold;
+	margin-bottom: 0.5%;
+}
+
+.btnOut {
+	background-color: unset !important;
+	color: unset !important;
+	padding: 0.5% 1% !important;
+	font-size: 1.1em !important;
+}
+
+table, th, td {
+	border: 1px solid #DDDDDD;
+}
+
+a {
+	cursor: pointer;
+}
