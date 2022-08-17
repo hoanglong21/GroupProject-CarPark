@@ -137,16 +137,17 @@ input, select {
 				</div>
 				<hr>
 				<div class="box" style="margin-top: 0; width: 100%; all: initial;">
-					<form action="addbooking" method="post">
+					<form action="addbooking" method="post" name="addbooking" id="submit"
+					onsubmit="return alert('Add booking office successfully');">
 						<table style="width: 50%;">
 							<tr>
 								<td><strong>Booking office name (*)</strong></td>
-								<td><input class="box" type="text" name="officeName"
+								<td><input class="box" type="text" name="officeName" required
 									placeholder="Enter booking office name" maxlength="50"/></td>
 							</tr>
 							<tr>
 								<td><strong>Trip (*)</strong></td>
-								<td><select class="box" name="trip">
+								<td><select class="box" name="trip" required>
 										<c:forEach items="${list}" var="i">
 											<option value="${i.tripId}">${i.destination}</option>
 										</c:forEach>
@@ -154,12 +155,12 @@ input, select {
 							</tr>
 							<tr>
 								<td><strong>Phone number (*)</strong></td>
-								<td><input class="box" type="number" name="phone"
+								<td><input class="box" type="number" name="phone" required
 									placeholder="Enter phone number" maxlength="50"/></td>
 							</tr>
 							<tr>
 								<td><strong>Place (*)</strong></td>
-								<td><select class="box" name="place">
+								<td><select class="box" name="place" required>
 										<option value="Checkout Counter 1">Checkout Counter 1</option>
 										<option value="Checkout Counter 2">Checkout Counter 2</option>
 										<option value="Checkout Counter 3">Checkout Counter 3</option>
@@ -169,7 +170,7 @@ input, select {
 							</tr>
 							<tr>
 								<td><strong>Price (*)</strong></td>
-								<td><input class="box" type="number" name="price"
+								<td><input class="box" type="number" name="price" required
 									placeholder="Enter price" maxlength="50"/></td>
 								<td><strong>&nbsp&nbsp&nbsp(VND)</strong>
 							</tr>
@@ -181,13 +182,13 @@ input, select {
 											<td><label class="box long"
 												style="font-weight: 100; margin: 0; background: #EEEEEE; padding: 6%;">From
 													date</label></td>
-											<td><input class="box" id="from" type="date" name="from" /></td>
+											<td><input class="box" id="from" type="date" name="from" required/></td>
 										</tr>
 										<tr>
 											<td><label class="box long"
 												style="font-weight: 100; margin: 0; background: #EEEEEE; padding: 6%;"
 												" for="to">To date</label></td>
-											<td><input class="box" id="to" type="date" name="to" /></td>
+											<td><input class="box" id="to" type="date" name="to" required onchange="check()"/></td>
 										</tr>
 									</table>
 								</td>
@@ -200,7 +201,7 @@ input, select {
 										type="reset">
 										<i class="fa-solid fa-rotate-left"></i> Reset
 									</button>
-									<button style="font-size: 1.2em; padding: 1%" type="submit">
+									<button style="font-size: 1.2em; padding: 1%" type="submit" id="submitbtn">
 										<i class="fa-solid fa-plus"></i> Add
 									</button>
 								</td>
@@ -216,6 +217,16 @@ input, select {
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+	<script type="text/javascript">
+	var check = function() {
+	    if (document.forms["addbooking"]["from"].value <
+	    document.forms["addbooking"]["to"].value) {
+	        document.forms["addbooking"]["to"].setCustomValidity('');
+	    } else {
+	        document.forms["addbooking"]["to"].setCustomValidity('Invalid contract deadline');
+	    }
+	    document.forms["addbooking"]["to"].reportValidity();
+	  }
+	</script>
 </body>
 </html>

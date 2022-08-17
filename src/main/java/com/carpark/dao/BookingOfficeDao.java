@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import com.carpark.model.BookingOffice;
@@ -113,7 +111,7 @@ public class BookingOfficeDao {
 	public static void main(String[] args) {
 		BookingOfficeDao dao = new BookingOfficeDao();
 //		System.out.println(dao.getAllBookingOffice());
-//		dao.addBookingOffice("hehe", "06456456", "abcAdd", BigInteger.valueOf(454456154), "2022/1/1", "2022/1/1", BigInteger.valueOf(1));
+//		dao.addBookingOffice("hehe", "06456456", "abcAdd", BigInteger.valueOf(454456154), "", "", BigInteger.valueOf(1));
 		System.out.println(dao.getBookingOfficeById(BigInteger.valueOf(1)));
 	}
 }

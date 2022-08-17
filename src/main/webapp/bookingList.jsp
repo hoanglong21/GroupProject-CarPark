@@ -187,7 +187,11 @@ table, tr, td, th {
 									<td><a href="viewbooking?id=${i.officeId}"><i class="fa-solid fa-eye"></i> View</a></td>
 								</tr>
 							</c:forEach>
-
+							<c:if test="${list==null || list.size()==0}">
+								<tr>
+									<td colspan="4" style="text-align: center;">No matches</td>
+								</tr>
+							</c:if>
 						</tbody>
 					</table>
 				</div>

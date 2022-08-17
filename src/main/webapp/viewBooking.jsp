@@ -133,7 +133,7 @@ input, select {
 			<div class="col-10"
 				style="padding-left: 2%; padding-right: 3%; min-height: 100vh; background: #FFFFFF;">
 				<div style="margin-top: 3%;">
-					<h3>Vie Booking Office</h3>
+					<h3>View Booking Office</h3>
 				</div>
 				<hr>
 				<div class="box" style="margin-top: 0; width: 100%; all: initial;">

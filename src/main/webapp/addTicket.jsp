@@ -131,16 +131,17 @@ input, select {
 						<table style="width: 50%;">
 							<tr>
 								<td><strong>Customer (*)</strong></td>
-								<td><input class="box" type="text" name="customer"
+								<td><input class="box" type="text" name="customer" required
 									placeholder="Enter customer name" maxlength="50"/></td>
 							</tr>
 							<tr>
 								<td><strong>Booking time (*)</strong></td>
-								<td><input class="box" name="time" type="time" style="align-items: inherit;">
+								<td><input class="box" name="time" required
+								type="time" style="align-items: inherit;">
 							</tr>
 							<tr>
 								<td><strong>Trip (*)</strong></td>
-								<td><select class="box" name="trip">
+								<td><select class="box" name="trip" required>
 										<c:forEach items="${list}" var="i">
 											<option value="${i.tripId}">${i.destination}</option>
 										</c:forEach>
@@ -148,7 +149,7 @@ input, select {
 							</tr>
 							<tr>
 								<td><strong>License plate (*)</strong></td>
-								<td><select class="box" name="license">
+								<td><select class="box" name="license" required>
 										<c:forEach items="${list2}" var="i">
 											<option value="${i.licensePlate}">${i.licensePlate}</option>
 										</c:forEach>

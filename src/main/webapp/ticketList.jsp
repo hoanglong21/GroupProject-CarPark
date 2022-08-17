@@ -238,7 +238,11 @@ table, tr, td, th {
 									 id="delete-${i.ticketId}"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
 								</tr>
 							</c:forEach>
-
+							<c:if test="${list==null || list.size()==0}">
+								<tr>
+									<td colspan="6" style="text-align: center;">No matches</td>
+								</tr>
+							</c:if>
 						</tbody>
 					</table>
 				</div>
@@ -350,6 +354,7 @@ table, tr, td, th {
 		if (confirm("Are you sure you want to delete this item?") == false) {
 			return;
 		}
+		confirm("Delete successfully");
 		$.ajax(
 			{
 				url: 'http://localhost:8080/CarPark/deleteticket',
