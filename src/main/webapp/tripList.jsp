@@ -132,7 +132,7 @@ table, tr, td, th {
 			<div class="col-10"
 				style="padding-left: 2%; padding-right: 3%; min-height: 100vh;">
 				<div style="margin-top: 3%;">
-					<h3>Ticket List</h3>
+					<h3>Trip List</h3>
 				</div>
 				<hr>
 				<div class="box" style="margin-top: 0; width: 100%; all: initial">
@@ -205,11 +205,11 @@ table, tr, td, th {
 							<tr style="background: #EEEEEE">
 								<th style="width: 5%;">No</th>
 								<th style="width: 20%;">Destination</th>
-								<th style="width: 20%;">Departure Time</th>
-								<th style="width: 20%;">Driver</th>
+								<th style="width: 10%;">Departure Time</th>
+								<th style="width: 15%;">Driver</th>
 								<th style="width: 15%;">Car Type</th>
-								<th style="width: 15%;">Booked ticket number</th>
-								<th style="width: 10%;">Action</th>
+								<th style="width: 10%;">Booked ticket number</th>
+								<th style="width: 15%;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -337,16 +337,17 @@ table, tr, td, th {
 	$(".delete").on("click", (e) => {
 		//e.preventDefault();
 		var target = e.target;
-		var ticketId = target.id;
+		var tripId = target.id;
 		if (confirm("Are you sure you want to delete this item?") == false) {
 			return;
 		}
+		
 		$.ajax(
 			{
-				url: 'http://localhost:8080/CarPark/deleteticket',
+				url: 'http://localhost:8080/CarPark/deletetrip',
 				type: 'Post',
 				data: {
-					"ticketId": ticketId
+					"tripId": tripId
 				},
 				success: function(data) {
 					var parser = new DOMParser();

@@ -143,7 +143,7 @@ input, select {
 				</div>
 				<hr>
 				<div class="box" style="margin-top: 0; width: 100%; all: initial;">
-					<form action="addticket" method="post">
+					<form action="addtrip" method="post">
 						<table style="width: 50%;">
 							<tr>
 								<td><strong>Destination (*)</strong></td>
