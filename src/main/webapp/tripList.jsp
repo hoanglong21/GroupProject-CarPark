@@ -341,7 +341,7 @@ table, tr, td, th {
 		if (confirm("Are you sure you want to delete this item?") == false) {
 			return;
 		}
-		
+		confirm("Delete successfully");
 		$.ajax(
 			{
 				url: 'http://localhost:8080/CarPark/deletetrip',
