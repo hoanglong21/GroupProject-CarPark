@@ -74,12 +74,28 @@ table, tr, td, th {
 							<button class="accordion-button collapsed"
 								style="background: #F8F8F8; padding-left: 7px; color: #897AB7;"
 								type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseZero" aria-expanded="false"
-								aria-controls="collapseOne">
+								data-bs-target="#collapse2" aria-expanded="false"
+								aria-controls="collapse2">
 								<i class="fa-solid fa-plane"></i>&nbsp Trip manager
 
 							</button>
 						</h2>
+						<div id="collapse2" style="background: #F8F8F8;"
+							class="accordion-collapse collapse show"
+							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+							<div class="accordion-body" style="padding: 0px;">
+								<div class="border long abit"
+									style="padding-left: 25px; border: none !important; background: #EEEEEE;">
+									<a class="dropdown-item" href="triplist"><i
+										class="fa-solid fa-list"></i> Trip list</a>
+								</div>
+								<div class="border long abit"
+									style="padding-left: 25px; border: none !important;">
+									<a class="dropdown-item" href="addTrip.jsp">
+									<i class="fa-solid fa-plus"></i> Add Trip </a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="accordion">

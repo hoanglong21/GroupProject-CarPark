@@ -147,8 +147,8 @@ input, select {
 						<table style="width: 50%;">
 							<tr>
 								<td><strong>Destination (*)</strong></td>
-								<td><input class="box" type="text" name="customer"
-									placeholder="Enter customer name" maxlength="50"/></td>
+								<td><input class="box" type="text" name="destination"
+									placeholder="Enter destination" maxlength="50"/></td>
 							</tr>
 							<tr>
 								<td><strong>Departure time (*)</strong></td>
@@ -156,21 +156,24 @@ input, select {
 							</tr>
 							<tr>
 								<td><strong>Driver (*)</strong></td>
-								<td><select class="box" name="trip">
-										<c:forEach items="${list}" var="i">
-											<option value="${i.tripId}">${i.destination}</option>
-										</c:forEach>
-								</select></td>
+								<td><input class="box" type="text" name="driver"
+									placeholder="Enter driver" maxlength="50"/></td>
 							</tr>
 							<tr>
-								<td><strong>License plate (*)</strong></td>
-								<td><select class="box" name="license">
-										<c:forEach items="${list2}" var="i">
-											<option value="${i.licensePlate}">${i.licensePlate}</option>
-										</c:forEach>
-								</select></td>
+								<td><strong>Car Type (*)</strong></td>
+								<td><input class="box" type="text" name="cartype"
+									placeholder="Enter car type" maxlength="50"/></td>
 							</tr>
-							
+							<tr>
+								<td><strong>Maximum online ticket number (*)</strong></td>
+								<td><input class="box" type="number" name="maxticket"
+									value="0" maxlength="50"/></td>
+							</tr>
+							<tr>
+								<td><strong>Departure Date (*)</strong></td>
+								<td><input class="box" type="date" name="date"
+									        maxlength="50"/></td>
+							</tr>
 							<tr>
 								<td colspan="2" style="padding-top: 3%; text-align: center;">
 									<button
