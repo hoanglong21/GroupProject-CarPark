@@ -91,7 +91,7 @@ table, tr, td, th {
 								</div>
 								<div class="border long abit"
 									style="padding-left: 25px; border: none !important;">
-									<a class="dropdown-item" href="addticket">
+									<a class="dropdown-item" href="addTrip.jsp">
 									<i class="fa-solid fa-plus"></i> Add Trip </a>
 								</div>
 							</div>
@@ -221,7 +221,11 @@ table, tr, td, th {
 									<td>${i.driver}</td>
 									<td>${i.carType}</td>
 									<td>${i.bookedTicketNumber}</td>
-									<td><a href="#" class="delete"
+									
+									<td>
+									<a href="#" class="edittrip"
+									 id="edittrip-${i.tripId}"><i class="fa-solid fas fa-edit"></i> Edit</a>
+									<a href="#" class="delete"
 									 id="delete-${i.tripId}"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
 								</tr>
 							</c:forEach>
