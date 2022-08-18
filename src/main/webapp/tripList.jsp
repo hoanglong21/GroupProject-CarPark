@@ -136,7 +136,7 @@ table, tr, td, th {
 				</div>
 				<hr>
 				<div class="box" style="margin-top: 0; width: 100%; all: initial">
-					<form style="all: initial;" id="search-form" action="bookinglist"
+					<form style="all: initial;" id="search-form" action="triplist"
 						method="post">
 						<div class="form-row align-items-center"
 							style="display: flex; justify-content: flex-end;">
@@ -150,7 +150,7 @@ table, tr, td, th {
 										</div>
 									</div>
 									<input id="search" name="search" class="form-control"
-										type="text" placeholder="Ticket Search" maxlength="50"
+										type="text" placeholder="Trip Search" maxlength="50"
 										value="${search}" >
 								</div>
 							</div>
