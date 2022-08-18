@@ -12,7 +12,59 @@
 <title>Login</title>
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/styles.css" />
+<style>
+body {
+	background: #eee;
+}
+
+.wrapper {
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+
+.form-signin {
+	border-radius: 10px;
+	max-width: 380px;
+	padding: 0px 15px 20px 15px;
+	margin: 0 auto;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 25px;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+
+.form-signin .form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[type="text"] {
+	margin-bottom: 15px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+</style>
 </head>
 <body>
 	<c:set var="cookie" value="${pageContext.request.cookies}" />
