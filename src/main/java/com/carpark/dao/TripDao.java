@@ -13,6 +13,7 @@ import com.carpark.model.Trip;
 import com.carpark.util.ConnectionDB;
 import com.carpark.util.Mapper;
 
+
 public class TripDao {
 	private final String tripAll = " select tp.tripId,\r\n"
 			+ "       destination,\r\n"
@@ -39,6 +40,17 @@ public class TripDao {
 			+ " group by tp.tripId, destination,departureDate, departureTime, driver, carType,bookedTicketNumber,maxiumOnlineTicketNumber)\r\n"
 			+ " select count(*) as [Count] from t";
 	
+	private final String getTripById = "select * from trip\n" 
+                                      +"where tripId = ? ";
+	
+	private final String EditTrip = "update trip\r\n"
+			+ "		set destination = ? ,\r\n"
+			+ "		    departureTime = ? ,\r\n"
+			+ "			driver = ? ,\r\n"
+			+ "			carType = ? ,\r\n"
+			+ "			maxiumOnlineTicketNumber = ? \r\n"
+			+ "			where tripId = ?  ";
+	
 	
 	public List<Trip> searchTrip(String date, String key, int pageNumber, int elementPerPage) {
 		try(Connection connection = ConnectionDB.getInstance().getConnection();
@@ -56,6 +68,26 @@ public class TripDao {
 		return null;
 	}
 	
+	
+	 public void EditTrip(String destination,String departime,String driver,
+             String cartype,String maxtick, int id){
+		 
+		 try(Connection connection = ConnectionDB.getInstance().getConnection();
+					PreparedStatement preparedStatement = connection.prepareStatement(EditTrip)){			
+				preparedStatement.setString(1, destination);
+				preparedStatement.setString(2, departime);
+				preparedStatement.setString(3, driver);
+				preparedStatement.setString(4, cartype);
+				preparedStatement.setString(5, maxtick);
+				preparedStatement.setInt(6, id);
+				preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	 
+	 
+	 
 	public int searchTotalPage(String key, String date) {
 		try(Connection connection = ConnectionDB.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(searchTripTotal)){	
@@ -81,6 +113,32 @@ return 0;
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	 public Trip getTripByID(BigInteger tid){
+	       
+			try(Connection connection = ConnectionDB.getInstance().getConnection();
+					PreparedStatement preparedStatement = connection.prepareStatement(getTripById)){	
+				preparedStatement.setLong(1,tid.longValue());
+				ResultSet resultSet = preparedStatement.executeQuery();
+				
+				 while(resultSet.next()){
+					 Trip t = new Trip();
+		                t.setTripId(BigInteger.valueOf(resultSet.getLong("tripId")));
+		                t.setBookedTicketNumber(Integer.parseInt(resultSet.getString("bookedTicketNumber")));
+		                t.setCarType(resultSet.getString("carType"));
+		                t.setDepartureDate(resultSet.getString("departureDate"));
+		                t.setDepartureTime(resultSet.getString("departureTime"));
+		                t.setDestination(resultSet.getString("destination"));
+		                t.setDriver(resultSet.getString("driver"));
+		                t.setMaxiumOnlineTicketNumber(resultSet.getInt("maxiumOnlineTicketNumber"));
+		                return t;
+		            }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return null;
+	    
 	}
 	
 	public void addTrip( String cartype, String departureDate, String departureTime, String destination, String driver, String maxticket) {
@@ -110,9 +168,8 @@ return 0;
 	
 	public static void main(String[] args) {
 		TripDao td = new TripDao();
-		int page = 1;
-		int elementPerPage = 100;
-		int list = td.searchTotalPage("%" + "l" + "%", "2021/08/18");
-		System.out.println(list);
+		Trip t = new Trip();
+		 t = td.getTripByID(BigInteger.valueOf(2));
+		System.out.println(t.getCarType());
 	}
 }

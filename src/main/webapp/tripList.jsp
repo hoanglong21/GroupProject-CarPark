@@ -223,8 +223,8 @@ table, tr, td, th {
 									<td>${i.bookedTicketNumber}</td>
 									
 									<td>
-									<a href="#" class="edittrip"
-									 id="edittrip-${i.tripId}"><i class="fa-solid fas fa-edit"></i> Edit</a>
+									<a href="loadedit?tid=${i.tripId}" class="edittrip"
+									 ><i class="fa-solid fas fa-edit"></i> Edit</a>
 									<a href="#" class="delete"
 									 id="delete-${i.tripId}"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
 								</tr>
