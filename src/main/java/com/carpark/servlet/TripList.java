@@ -15,7 +15,7 @@ import com.carpark.model.Trip;
 /**
  * Servlet implementation class TripList
  */
-@WebServlet(name = "triplist", urlPatterns = { "/triplist" })
+@WebServlet(name = "triplist", urlPatterns = { "/ad/triplist" })
 public class TripList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	TripDao tdb = new TripDao();

@@ -14,7 +14,7 @@ import com.carpark.dao.TripDao;
 /**
  * Servlet implementation class AddTrip
  */
-@WebServlet(name = "addtrip", urlPatterns = { "/addtrip" })
+@WebServlet(name = "addtrip", urlPatterns = { "/ad/addtrip" })
 public class AddTrip extends HttpServlet {
 	private static final long serialVersionUID = 1L;
            TripDao td = new TripDao();

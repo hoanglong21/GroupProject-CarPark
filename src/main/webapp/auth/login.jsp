@@ -69,7 +69,7 @@ body {
 <body>
 	<c:set var="cookie" value="${pageContext.request.cookies}" />
 	<div class="wrapper">
-		<form class="form-signin" action="LoginServlet" method="post">
+		<form class="form-signin" action="login" method="post">
 			<h3 class="form-signin-heading">Please Sign In</h3>
 			<div class="form-error">
 				<h2 class="text-danger"

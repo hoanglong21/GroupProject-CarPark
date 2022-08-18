@@ -15,7 +15,7 @@ import com.carpark.model.Employee;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/LoginServlet")
+@WebServlet("/auth/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,6 +51,7 @@ public class LoginServlet extends HttpServlet {
             return;
         } else {
             HttpSession session = request.getSession();
+            session.setAttribute("account", m);
             session.setAttribute("email", m);
             session.setAttribute("password", password);
             //Remember - cookies
@@ -69,7 +70,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(cUser);
             response.addCookie(cPass);
             response.addCookie(cRemember);
-            response.sendRedirect("/CarPark/ListEmployeeServlet");
+            response.sendRedirect("/CarPark/");
         }
 	}
 

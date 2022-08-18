@@ -25,7 +25,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 	integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="resources/css/styles.css" rel="stylesheet">
+<link href="../resources/css/styles.css" rel="stylesheet">
 <style>
 table, tr, td {
 	border: none;
@@ -58,7 +58,7 @@ input, select {
 		<nav class="navbar navbar-expand-lg bg-light fixed-top border">
 			<div class="container-fluid">
 				<a style="color: black;" href="#"> <i class="fa-solid fa-ticket"
-					style="transform: rotate(-45deg);"></i>&nbsp Trip
+					style="transform: rotate(-45deg);"></i>&nbsp Ticket
 				</a>
 
 				<div style="text-align: right;">
@@ -81,28 +81,12 @@ input, select {
 							<button class="accordion-button collapsed"
 								style="background: #F8F8F8; padding-left: 7px; color: #897AB7;"
 								type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapse2" aria-expanded="false"
-								aria-controls="collapse2">
+								data-bs-target="#collapseZero" aria-expanded="false"
+								aria-controls="collapseOne">
 								<i class="fa-solid fa-plane"></i>&nbsp Trip manager
 
 							</button>
 						</h2>
-						<div id="collapse2" style="background: #F8F8F8;"
-							class="accordion-collapse collapse show"
-							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-							<div class="accordion-body" style="padding: 0px;">
-								<div class="border long abit"
-									style="padding-left: 25px; border: none !important; background: #EEEEEE;">
-									<a class="dropdown-item" href="triplist"><i
-										class="fa-solid fa-list"></i> Trip list</a>
-								</div>
-								<div class="border long abit"
-									style="padding-left: 25px; border: none !important;">
-									<a class="dropdown-item" href="addTrip.jsp">
-									<i class="fa-solid fa-plus"></i> Add Trip </a>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 				<div class="accordion">
@@ -139,41 +123,39 @@ input, select {
 			<div class="col-10"
 				style="padding-left: 2%; padding-right: 3%; min-height: 100vh; background: #FFFFFF;">
 				<div style="margin-top: 3%;">
-					<h3>Add Trip</h3>
+					<h3>Add Ticket</h3>
 				</div>
 				<hr>
 				<div class="box" style="margin-top: 0; width: 100%; all: initial;">
-					<form action="addtrip" method="post">
+					<form action="addticket" method="post">
 						<table style="width: 50%;">
 							<tr>
-								<td><strong>Destination (*)</strong></td>
-								<td><input class="box" type="text" name="destination"
-									placeholder="Enter destination" maxlength="50"/></td>
+								<td><strong>Customer (*)</strong></td>
+								<td><input class="box" type="text" name="customer" required
+									placeholder="Enter customer name" maxlength="50"/></td>
 							</tr>
 							<tr>
-								<td><strong>Departure time (*)</strong></td>
-								<td><input class="box" name="time" type="time" style="align-items: inherit;">
+								<td><strong>Booking time (*)</strong></td>
+								<td><input class="box" name="time" required
+								type="time" style="align-items: inherit;">
 							</tr>
 							<tr>
-								<td><strong>Driver (*)</strong></td>
-								<td><input class="box" type="text" name="driver"
-									placeholder="Enter driver" maxlength="50"/></td>
+								<td><strong>Trip (*)</strong></td>
+								<td><select class="box" name="trip" required>
+										<c:forEach items="${list}" var="i">
+											<option value="${i.tripId}">${i.destination}</option>
+										</c:forEach>
+								</select></td>
 							</tr>
 							<tr>
-								<td><strong>Car Type (*)</strong></td>
-								<td><input class="box" type="text" name="cartype"
-									placeholder="Enter car type" maxlength="50"/></td>
+								<td><strong>License plate (*)</strong></td>
+								<td><select class="box" name="license" required>
+										<c:forEach items="${list2}" var="i">
+											<option value="${i.licensePlate}">${i.licensePlate}</option>
+										</c:forEach>
+								</select></td>
 							</tr>
-							<tr>
-								<td><strong>Maximum online ticket number (*)</strong></td>
-								<td><input class="box" type="number" name="maxticket"
-									value="0" maxlength="50"/></td>
-							</tr>
-							<tr>
-								<td><strong>Departure Date (*)</strong></td>
-								<td><input class="box" type="date" name="date"
-									        maxlength="50"/></td>
-							</tr>
+							
 							<tr>
 								<td colspan="2" style="padding-top: 3%; text-align: center;">
 									<button
