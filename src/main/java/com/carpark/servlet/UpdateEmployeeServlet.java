@@ -1,8 +1,6 @@
 package com.carpark.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.dao.EmployeeDAO;
-import com.carpark.model.Employee;
 
 /**
- * Servlet implementation class AddEmployeeServlet
+ * Servlet implementation class UpdateEmployeeServlet
  */
-@WebServlet("/AddEmployeeServlet")
-public class AddEmployeeServlet extends HttpServlet {
+@WebServlet("/UpdateEmployeeServlet")
+public class UpdateEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddEmployeeServlet() {
+    public UpdateEmployeeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +29,7 @@ public class AddEmployeeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("addEmployee.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -40,7 +37,6 @@ public class AddEmployeeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		EmployeeDAO dao = new EmployeeDAO();
 		String employeeFullName = request.getParameter("employeeFullName");
 		String employeePhone = request.getParameter("employeePhone");
 		String employeeBirthdate = request.getParameter("employeeBirthdate");
@@ -50,17 +46,10 @@ public class AddEmployeeServlet extends HttpServlet {
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
 		String department = request.getParameter("department");
-		Employee e = new Employee();
-		e.setEmployeeFullName(employeeFullName);
-		e.setEmployeePhone(employeePhone);
-		e.setEmployeeBirthdate(employeeBirthdate);
-		e.setSex(sex);
-		e.setEmployeeAddress(employeeAddress);
-		e.setEmployeeEmail(employeeEmail);
-		e.setAccount(account);
-		e.setPassword(password);
-		e.setDepartment(department);
-		dao.insert(e);
+		int roleId = Integer.parseInt(request.getParameter("roleId"));
+		int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+		EmployeeDAO dao = new EmployeeDAO();
+		dao.update(employeeFullName, employeePhone, employeeBirthdate, sex, employeeAddress, employeeEmail, account, password, department, roleId, employeeId);
 		response.sendRedirect("ListEmployeeServlet");
 	}
 

@@ -24,7 +24,7 @@ td {
 	font-weight: bold;
 }
 
-td input[type="text"], input[type="date"], select {
+td input[type="text"], input[type="password"], input[type="email"], input[type="date"], select {
 	width: 100%;
 	padding: 0.5rem;
 	border: #ccc 1px solid;
@@ -50,7 +50,7 @@ tr:last-child button i {
 		</div>
 		<div class="header_right">
 			<p class="welcome" style="color: #5BA4D6;">Welcome</p>
-			<a href="#" style="color: #5BA4D6;"><i
+			<a href="LogoutServlet" style="color: #5BA4D6;"><i
 				class="fa-solid fa-right-from-bracket"></i> Logout</a>
 		</div>
 	</div>
@@ -70,11 +70,13 @@ tr:last-child button i {
 				</div>
 				<div class="dropdown-list">
 					<div class="dropdown-item">
-						<a href=""> <i class="fa-solid fa-list"></i> Employee list
+						<a href="ListEmployeeServlet"> <i class="fa-solid fa-list"></i>
+							Employee list
 						</a>
 					</div>
 					<div class="dropdown-item">
-						<a href=""> <i class="fa-solid fa-plus"></i> Add Employee
+						<a href="AddEmployeeServlet"> <i class="fa-solid fa-plus"></i>
+							Add Employee
 						</a>
 					</div>
 				</div>
@@ -84,68 +86,85 @@ tr:last-child button i {
 			<h3 class="form-signin-heading">Add Employee</h3>
 			<hr />
 			<div class="infor-table">
-				<form class="add" action="">
+				<form class="add" action="AddEmployeeServlet" method="post">
 					<table border="0">
 						<tr>
 							<td>Full name <span style="color: red">(*)</span>:
 							</td>
-							<td><input class="required" type="text" name="employeeFullName"
-								id="" placeholder="Enter Full Name"></td>
+							<td><input type="text" pattern="[a-zA-Z0-9 ]*$"
+								name="employeeFullName" value="${e.employeeFullName}"
+								placeholder="Enter Full Name" required=""></td>
 						</tr>
 						<tr>
 							<td>Phone number <span style="color: red">(*)</span>:
 							</td>
-							<td><input class="required" type="text" name="employeePhone"
-								id="" placeholder="Enter phone number"></td>
+							<td><input type="text" name="employeePhone" pattern="(\+84|0)\d{9,10}"
+								value="${e.employeePhone}" placeholder="Enter phone number"
+								required=""></td>
 						</tr>
 						<tr>
 							<td>Date of birth <span style="color: red">(*)</span>:
 							</td>
-							<td><input class="required" type="date" name="employeeBirthdate"
-								id="" placeholder="dd/mm/yyyy"></td>
+							<td><input type="date" name="employeeBirthdate"
+								value="${e.employeeBirthdate}" placeholder="dd/mm/yyyy"
+								required="" min="1962-01-01" max="2004-12-31"></td>
 						</tr>
 						<tr>
 							<td>Sex <span style="color: red">(*)</span>:
 							</td>
-							<td><input type="radio" name="sex" id="" checked>Male
-								<input type="radio" name="sex" id="">Female</td>
+							<td><input type="radio" id="Male" name="sex" ${e.sex} value="1" /> 
+							<label for="Male">Male</label> 
+							<input type="radio" id="Female" name="sex" ${e.sex} value="0" /> 
+							<label for="Female">Female</label>
 						</tr>
 						<tr>
 							<td>Address :</td>
-							<td><input type="text" name="employeeAddress" id=""
-								placeholder="Enter address"></td>
+							<td><input type="text" name="employeeAddress" pattern="[a-zA-Z0-9 ]*$"
+								value="${e.employeeAddress}" placeholder="Enter address"></td>
 						</tr>
 						<tr>
 							<td>Email :</td>
-							<td><input type="text" name="employeeEmail" id=""
-								placeholder="Enter email"></td>
+							<td><input type="email" name="employeeEmail"
+								value="${e.employeeEmail}" placeholder="Enter email"></td>
 						</tr>
 						<tr>
 							<td>Account <span style="color: red">(*)</span>:
 							</td>
-							<td><input class="required" type="text" name="account"
-								id="" placeholder="Enter account"></td>
+							<td><input type="text" pattern="[a-zA-Z0-9]+" name="account" value="${e.account}"
+								placeholder="Enter account" required=""></td>
 						</tr>
 						<tr>
 							<td>Password <span style="color: red">(*)</span>:
 							</td>
-							<td><input class="required" type="text" name="password"
-								id="" placeholder="Enter password"></td>
+							<td><input class="required" type="password" name="password"
+								id="" placeholder="Enter password" required=""
+								value="${e.password}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters"></td>
 						</tr>
 						<tr>
 							<td>Department <span style="color: red">(*)</span>:
 							</td>
-							<td><select name="department" id="">
-									<option value="">Employee</option>
-									<option value="">Manager</option>
-							</select></td>
+							<td><select name="department"
+							aria-controls="zero-conf"
+							class="custom-select custom-select-sm form-control form-control-sm">
+								<option ${e.department} value="Training">Training</option>
+								<option ${e.department} value="Marketing">Marketing</option>
+								<option ${e.department} value="Human Resources">Human Resources</option>
+								<option ${e.department} value="Product Management">Product Management</option>
+								<option ${e.department} value="Research and Development">Research and Development</option>
+								<option ${e.department} value="Sales">Sales</option>
+								<option ${e.department} value="Support">Support</option>
+								<option ${e.department} value="Business Development">Business Development</option>
+								<option ${e.department} value="Legal">Legal</option>
+								<option ${e.department} value="Services">Services</option>
+								<option ${e.department} value="Accounting">Accounting</option>
+						</select></td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<button type="button"
-									style="background-color: #5BC0DE; padding: 0.5rem; margin-right: 0.5rem; border-radius: 10%; color: #fff; border: #5BC0DE 1px solid;">
+								<a href="ListEmployeeServlet"
+									style="background-color: #5BC0DE; padding: 0.5rem; margin-right: 0.5rem; border-radius: 10%; color: #fff; border: #5BC0DE 1px solid; text-decoration: none">
 									<i class="fa-solid fa-backward"></i> Back
-								</button>
+								</a>
 								<button type="reset"
 									style="background-color: #F0B25D; padding: 0.5rem; margin-right: 0.5rem; border-radius: 10%; color: #fff; border: #F0B25D;">
 									<i class="fa-solid fa-arrow-rotate-left"></i>Reset
@@ -161,5 +180,14 @@ tr:last-child button i {
 			</div>
 		</div>
 	</div>
+	<script>
+		function displayDropdownList(event) {
+			const dropDown = event.parentElement;
+			const dropdownList = dropDown
+					.getElementsByClassName("dropdown-list")[0];
+			dropdownList.classList.toggle("show");
+			console.log(dropdownList);
+		}
+	</script>
 </body>
 </html>

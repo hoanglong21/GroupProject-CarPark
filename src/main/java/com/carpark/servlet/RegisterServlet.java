@@ -1,8 +1,6 @@
 package com.carpark.servlet;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +11,16 @@ import com.carpark.dao.EmployeeDAO;
 import com.carpark.model.Employee;
 
 /**
- * Servlet implementation class AddEmployeeServlet
+ * Servlet implementation class RegisterServlet
  */
-@WebServlet("/AddEmployeeServlet")
-public class AddEmployeeServlet extends HttpServlet {
+@WebServlet("/RegisterServlet")
+public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddEmployeeServlet() {
+    public RegisterServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +30,7 @@ public class AddEmployeeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("addEmployee.jsp").forward(request, response);
+		 request.getRequestDispatcher("register.jsp").forward(request, response);
 	}
 
 	/**
@@ -49,19 +47,28 @@ public class AddEmployeeServlet extends HttpServlet {
 		String employeeEmail = request.getParameter("employeeEmail");
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
-		String department = request.getParameter("department");
-		Employee e = new Employee();
-		e.setEmployeeFullName(employeeFullName);
-		e.setEmployeePhone(employeePhone);
-		e.setEmployeeBirthdate(employeeBirthdate);
-		e.setSex(sex);
-		e.setEmployeeAddress(employeeAddress);
-		e.setEmployeeEmail(employeeEmail);
-		e.setAccount(account);
-		e.setPassword(password);
-		e.setDepartment(department);
-		dao.insert(e);
-		response.sendRedirect("ListEmployeeServlet");
+		String repass = request.getParameter("repass");
+		if(!password.equals(repass)){
+            request.setAttribute("error", "Please re-enter correct password");
+            request.setAttribute("name", employeeFullName);
+            request.setAttribute("phone", employeePhone);
+            request.setAttribute("birthdate", employeeBirthdate);
+            request.setAttribute("sex", sex);
+            request.setAttribute("address", employeeAddress);
+            request.setAttribute("email", employeeEmail);
+            request.setAttribute("account1", account);
+            request.setAttribute("password1", password);
+            request.setAttribute("confirm", repass);
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        }else{
+            Employee u = dao.checkExits(employeeEmail);
+            if(u==null){
+                dao.registerEmployee(employeeFullName, employeePhone, employeeBirthdate, sex, employeeAddress, employeeEmail, account, password);
+                response.sendRedirect("LoginServlet");
+            }else{
+                request.setAttribute("error", "Account existed");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+        }
 	}
-
 }

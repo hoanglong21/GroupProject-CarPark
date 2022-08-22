@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(cUser);
             response.addCookie(cPass);
             response.addCookie(cRemember);
-            response.sendRedirect("/CarPark/ListEmployeeServlet");
+            response.sendRedirect("/CarPark");
         }
 	}
 

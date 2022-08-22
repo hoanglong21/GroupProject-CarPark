@@ -1,6 +1,7 @@
 package com.carpark.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -32,9 +33,28 @@ public class ListEmployeeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		EmployeeDAO dao = new EmployeeDAO();
 		List<Employee> list = dao.getAll();
+		List<Employee> list2 = dao.getDepartment();
+		int page, numperpage=10;
+        int size = list.size();
+        int num=(size%10==0?(size/10):((size/10))+1);
+        String xpage= request.getParameter("page");
+        if(xpage==null){
+            page=1;
+        }else{
+            page=Integer.parseInt(xpage);
+        }
+        int start, end;
+        start=(page-1)*numperpage;
+        end=Math.min(page*numperpage, size);
+        List<Employee> list7 = dao.getListByPage((ArrayList<Employee>) list, start, end);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
+        request.setAttribute("list2", list2);
 		request.setAttribute("data", list);
+		request.setAttribute("data", list7);
 		request.getRequestDispatcher("listEmployee.jsp").forward(request, response);
 	}
 
