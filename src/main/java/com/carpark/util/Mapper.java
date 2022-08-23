@@ -8,6 +8,8 @@ import java.util.List;
 
 import com.carpark.model.BookingOffice;
 import com.carpark.model.Car;
+import com.carpark.model.Employee;
+import com.carpark.model.ParkingLot;
 import com.carpark.model.Ticket;
 import com.carpark.model.Trip;
 
@@ -103,6 +105,45 @@ public class Mapper {
 				
 				
 				list.add(new Ticket(ticketId, bookingTime, customerName, licensePlate, tripId, tripDestination));
+			}
+		}
+		return list;
+	}
+	
+	public static List<ParkingLot> mapToParkingLot(ResultSet resultSet) throws SQLException {
+		List<ParkingLot> list = new ArrayList<>();
+		if(resultSet != null) {
+			while (resultSet.next()) {
+				BigInteger parkingId = BigInteger.valueOf(resultSet.getLong("parkId"));
+				String parkingName = resultSet.getString("parkName");
+				String place = resultSet.getString("parkPlace");
+				BigInteger area = BigInteger.valueOf(resultSet.getLong("parkArea"));
+				BigInteger price = BigInteger.valueOf(resultSet.getLong("parkPrice"));
+				String parkStatus = resultSet.getString("parkStatus");
+				
+				list.add(new ParkingLot(parkingId, parkingName, place, area, price, parkStatus));
+			}
+		}
+		return list;
+	}
+	
+	public static List<Employee> mapToEmployeeList(ResultSet rs) throws SQLException {
+		List<Employee> list = new ArrayList<>();
+		if (rs != null) {
+			while (rs.next()) {
+				Employee a = new Employee();
+				a.setEmployeeId(rs.getInt("employeeId"));
+				a.setEmployeeFullName(rs.getString("employeeFullName"));
+				a.setAccount(rs.getString("account"));
+				a.setDepartment(rs.getString("department"));
+				a.setEmployeeAddress(rs.getString("employeeAddress"));
+				a.setEmployeeBirthdate(rs.getString("employeeBirthdate"));
+				a.setEmployeeEmail(rs.getString("employeeEmail"));
+				a.setEmployeePhone(rs.getString("employeePhone"));
+				a.setPassword(rs.getString("password"));
+				a.setSex(rs.getInt("sex"));
+				a.setRoleId(rs.getInt("roleId"));
+				list.add(a);
 			}
 		}
 		return list;

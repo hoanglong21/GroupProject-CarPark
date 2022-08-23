@@ -14,14 +14,14 @@ import com.carpark.dao.TripDao;
 /**
  * Servlet implementation class AddTrip
  */
-@WebServlet(name = "addtrip", urlPatterns = { "/addtrip" })
+@WebServlet(name = "addtrip", urlPatterns = { "/ad/addtrip" })
 public class AddTrip extends HttpServlet {
 	private static final long serialVersionUID = 1L;
            TripDao td = new TripDao();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("addTrip.jsp").forward(request, response);
 	}
 
 	/**

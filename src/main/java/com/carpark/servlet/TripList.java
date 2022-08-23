@@ -16,7 +16,7 @@ import com.carpark.model.Trip;
 /**
  * Servlet implementation class TripList
  */
-@WebServlet(name = "triplist", urlPatterns = { "/triplist" })
+@WebServlet(name = "triplist", urlPatterns = { "/ad/triplist" })
 public class TripList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	TripDao tdb = new TripDao();
@@ -30,7 +30,7 @@ public class TripList extends HttpServlet {
 		request.setAttribute("page", page);
 		request.setAttribute("listtrip", list);
 		request.setAttribute("year", "2000");
-		request.setAttribute("totalPage", Math.ceil((double)tdb.searchTotalPage("", "2020/01/01")));
+		request.setAttribute("totalPage", Math.ceil((double)tdb.searchTotalPage("", "1/01/01")/elementPerPage));
 		request.getRequestDispatcher("tripList.jsp").forward(request, response);
 	}
 

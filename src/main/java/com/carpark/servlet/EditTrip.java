@@ -12,7 +12,7 @@ import com.carpark.dao.TripDao;
 /**
  * Servlet implementation class EditTrip
  */
-@WebServlet(name = "edittrip", urlPatterns = { "/edittrip" })
+@WebServlet(name = "edittrip", urlPatterns = { "/ad/edittrip" })
 public class EditTrip extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

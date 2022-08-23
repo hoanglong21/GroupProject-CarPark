@@ -12,7 +12,7 @@ import com.carpark.dao.EmployeeDAO;
 /**
  * Servlet implementation class UpdateEmployeeServlet
  */
-@WebServlet("/UpdateEmployeeServlet")
+@WebServlet("/hr/UpdateEmployeeServlet")
 public class UpdateEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

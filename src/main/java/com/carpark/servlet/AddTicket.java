@@ -16,7 +16,7 @@ import com.carpark.dao.TripDao;
 import com.carpark.model.Car;
 import com.carpark.model.Trip;
 
-@WebServlet(urlPatterns = {"/addticket"})
+@WebServlet(urlPatterns = {"/ad/addticket"})
 public class AddTicket extends HttpServlet{
 
 	/**

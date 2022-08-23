@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.dao.TicketDao;
 
-@WebServlet(urlPatterns = {"/deleteticket"})
+@WebServlet(urlPatterns = {"/ad/deleteticket"})
 public class DeleteTicket extends HttpServlet{
 
 	/**

@@ -16,8 +16,6 @@ public class Employee {
 	String password;
 	int sex;
 	int roleId;
-	String roleName;
-	
 	public Employee() {
 		super();
 	}
@@ -36,25 +34,6 @@ public class Employee {
 		this.password = password;
 		this.sex = sex;
 		this.roleId = roleId;
-	}
-	
-	
-	public Employee(int employeeId, String employeeFullName, String account, String department, String employeeAddress,
-			String employeeBirthdate, String employeeEmail, String employeePhone, String password, int sex, int roleId,
-			String roleName) {
-		super();
-		this.employeeId = employeeId;
-		this.employeeFullName = employeeFullName;
-		this.account = account;
-		this.department = department;
-		this.employeeAddress = employeeAddress;
-		this.employeeBirthdate = employeeBirthdate;
-		this.employeeEmail = employeeEmail;
-		this.employeePhone = employeePhone;
-		this.password = password;
-		this.sex = sex;
-		this.roleId = roleId;
-		this.roleName = roleName;
 	}
 	public int getEmployeeId() {
 		return employeeId;
@@ -122,13 +101,6 @@ public class Employee {
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
-	
-	public String getRoleName() {
-		return roleName;
-	}
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", employeeFullName=" + employeeFullName + ", account=" + account
@@ -137,22 +109,10 @@ public class Employee {
 				+ ", password=" + password + ", sex=" + sex + ", roleId=" + roleId + "]";
 	}
 	
-	public String getDepart() {
-		return department;
-	}
-	
 	public String getDate() throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date a = formatter.parse(employeeBirthdate);
         formatter = new SimpleDateFormat("dd-MM-yyyy");
         return formatter.format(a);
- }
-	
-	public String getValidRole() {
-		if(getRoleId() == 1) {
-			return "HRM Staff";
-		}else {
-			return "Car park operation administration staff";
-		}
-	}
+ } 
 }

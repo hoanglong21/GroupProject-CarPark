@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.carpark.dao.BookingOfficeDao;
 import com.carpark.model.BookingOffice;
 
-@WebServlet(urlPatterns = {"/bookinglist"})
+@WebServlet(urlPatterns = {"/ad/bookinglist"})
 public class BookingOfficeList extends HttpServlet{
 
 	/**

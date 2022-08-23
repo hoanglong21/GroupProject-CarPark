@@ -14,7 +14,7 @@ import com.carpark.dao.BookingOfficeDao;
 import com.carpark.dao.TripDao;
 import com.carpark.model.Trip;
 
-@WebServlet(urlPatterns = {"/addbooking"})
+@WebServlet(urlPatterns = {"/ad/addbooking"})
 public class AddBookingOffice extends HttpServlet{
 
 	/**

@@ -30,7 +30,8 @@ public class LogoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
         session.removeAttribute("email");
-        response.sendRedirect("LoginServlet");
+        session.removeAttribute("account");
+        response.sendRedirect("/CarPark/auth/LoginServlet");
 	}
 
 	/**

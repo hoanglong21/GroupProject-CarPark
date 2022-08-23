@@ -16,7 +16,7 @@ import com.carpark.model.Trip;
 /**
  * Servlet implementation class LoadEditTrip
  */
-@WebServlet(name = "loadedit", urlPatterns = { "/loadedit" })
+@WebServlet(name = "loadedit", urlPatterns = { "/ad/loadedit" })
 public class LoadEditTrip extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	              TripDao list = new TripDao();

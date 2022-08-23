@@ -14,7 +14,7 @@ import com.carpark.model.Employee;
 /**
  * Servlet implementation class ViewEmployeeServlet
  */
-@WebServlet("/ViewEmployeeServlet")
+@WebServlet("/hr/ViewEmployeeServlet")
 public class ViewEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
